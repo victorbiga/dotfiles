@@ -62,7 +62,7 @@
     };
   in
   {
-    darwinConfigurations."" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."victors-Virtual-Machine" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       modules = [ 
 	configuration
