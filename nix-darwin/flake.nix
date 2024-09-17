@@ -65,14 +65,8 @@
   {
     darwinConfigurations."Victors-Virtual-Machine" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      modules = [ 
-	configuration
-        home-manager.darwinModules.home-manager {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.victor = import ./home.nix;
-        }
-        nix-homebrew.darwinModules.nix-homebrew
+      modules = [
+	nix-homebrew.darwinModules.nix-homebrew
         {
           nix-homebrew = {
             # Install Homebrew under the default prefix
@@ -95,7 +89,14 @@
             # With mutableTaps disabled, taps can no longer be added imperatively with `brew tap`.
             # mutableTaps = false;
           };
+        }        
+	configuration
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.victor = import ./home.nix;
         }
+        
       ];
     };
 
